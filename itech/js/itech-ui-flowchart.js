@@ -1,3 +1,6 @@
+/**
+ * Default component setting.
+ */
 const defaultComponentSetting = {
     title: "hello",
     id: '',
@@ -52,6 +55,8 @@ function createId(id = '') {
     return "_itech_" + id + (Math.floor(Date.now() / 1000))
 }
 /**
+ * A main flow chart class.
+ * 
  * @param {HTMLElement,Object} element
  */
 class FlowChart {
@@ -88,6 +93,12 @@ class FlowChart {
         }
 
     }
+    /**
+     * 
+     * @param {HTMLElement} element 
+     * @param {JSON} setting 
+     * @returns 
+     */
     init(element, setting) {
         this.element = element ? element : this.element
         this.element.css({ 'user-select': 'none'})
@@ -144,6 +155,9 @@ class FlowChart {
         this.initEvents()
         return this
     }
+    /**
+     * Event initiator.
+     */
     initEvents() {
         document.addEventListener('mousedown', function (e) {
             itech('._box_selected').loop(function (ele) {
@@ -211,9 +225,15 @@ class FlowChart {
 
         }
     }
+    /**
+     * Add new svg.
+     */
     addSvg() {
         this.svgelement.svg.setAttribute("style", "position: absolute;top: 0;left: 0;")
     }
+    /**
+     * Build grid lines on background.
+     */
     buildGrid() {
         if ('grid' in this.setting) {
             if (this.setting.grid.opt) {
@@ -221,12 +241,18 @@ class FlowChart {
             }
         }
     }
+    /**
+     * Remove grid lines.
+     */
     removeGrid() {
         itech('._itech-grid-line').loop(function (ele) {
             ele.remove()
         })
         itechFlowchart.setting.grid.opt = false
     }
+    /**
+     * Create the grid which show in background.
+     */
     createGrid() {
         const w = this.size.width;
         const h = this.size.height;
